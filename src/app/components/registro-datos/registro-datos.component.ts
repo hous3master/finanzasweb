@@ -41,6 +41,7 @@ export class RegistroDatosComponent implements OnInit {
       fechaInicial: ['', Validators.required],
       fechafin: ['', Validators.required],
     });
+    this.form.get('plazoDeTasaEfectiva')?.disable();
 
     this.form.get('prePlazoDeTasaEfectiva')?.valueChanges.subscribe((newValue) => {
       // update the value in the form
@@ -58,7 +59,9 @@ export class RegistroDatosComponent implements OnInit {
   }
 
   aceptar(): void {
+    
     if (this.form.valid) {
+      this.form.get('plazoDeTasaEfectiva')?.enable();
       this.valorpresente = this.form.value.valorpresente;
       this.plazoDeTasaEfectiva = this.form.value.plazoDeTasaEfectiva;
       this.tasaefectiva = this.form.value.tasaefectiva / 100; // Convertir a porcentaje
@@ -104,6 +107,7 @@ export class RegistroDatosComponent implements OnInit {
   }
 
   registrar(): void {
+    
     this.infocontable.fechafin = this.fechafin;
     this.infocontable.fechainicio = this.fechaInicial;
     this.infocontable.plazodias = this.plazoDeTasaEfectiva;
