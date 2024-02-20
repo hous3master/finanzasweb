@@ -24,7 +24,7 @@
             <mat-form-field appearance="fill" class="example-full-width">
                 <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker1" formControlName="fechafin"
                 [max]="maxfechafin"/>
-                <mat-hint>MM/DD/YYYY</mat-hint>
+                
                 <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
                 <mat-error *ngIf="obtenerControlCampo('fechafin')?.errors?.['required']">
@@ -37,7 +37,7 @@
             <mat-form-field appearance="fill" class="example-full-width">
                 <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker2" formControlName="fechainicio"
                 [max]="maxfechainicio"/>
-                <mat-hint>MM/DD/YYYY</mat-hint>
+                
                 <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
                 <mat-error *ngIf="obtenerControlCampo('fechainicio')?.errors?.['required']">

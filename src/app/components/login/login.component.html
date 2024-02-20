@@ -1,18 +1,29 @@
-<div class="d-flex flex-column align-items-center my-5">
-    <img src="../assets/logo.png" alt="Logo de la empresa" class="img-fluid" style="height: 200px; max-height: 200px;"/>
-  <h2>Inicio de sesión</h2>
-  <mat-form-field class="example-full-width">
-    <mat-label>Usuario</mat-label>
-    <input matInput placeholder="Username" [(ngModel)]="username" />
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <mat-label>Contraseña</mat-label>
-    <input
-      type="password"
-      matInput
-      placeholder="Password"
-      [(ngModel)]="password"
+<div class="d-flex flex-column align-items-center justify-content-center mainframe">
+  <div
+    class="h-100 d-flex flex-column"
+  >
+    <img
+      src="../assets/logo.png"
+      alt="Logo de la empresa"
+      class="img-fluid"
+      style="height: 200px; max-height: 200px"
     />
-  </mat-form-field>
-  <button mat-raised-button color="primary" (click)="login()">Ingresar</button>
+    <h1 class="text-center">Inicio de sesión</h1>
+    <mat-form-field class="example-full-width">
+      <mat-label>Usuario</mat-label>
+      <input matInput placeholder="Username" [(ngModel)]="username" />
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Contraseña</mat-label>
+      <input
+        type="password"
+        matInput
+        placeholder="Password"
+        [(ngModel)]="password"
+      />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="login()">
+      Ingresar
+    </button>
+  </div>
 </div>

@@ -1,25 +1,39 @@
 <h2>Alterar flujo de fondos</h2>
-<form [formGroup]="form" (submit)="aceptar()" class="example-form">
-  <!-- radio button to select betwwen ingreso and egreso -->
-  <mat-radio-group formControlName="tipo">
-    <mat-radio-button value="depositar">Depositar</mat-radio-button>
-    <mat-radio-button value="retirar">Retirar</mat-radio-button>
-  </mat-radio-group>
+<div class="bg-white border-dark-subtle border p-2 rounded-2">
+  <form [formGroup]="form" (submit)="aceptar()" class="d-flex flex-column">
+    <!-- radio button to select betwwen ingreso and egreso -->
+    <div class="d-flex flex-row align-items-center">
+      <p class="my-auto">Tipo de operación: </p>
+      <mat-radio-group formControlName="tipo">
+        <mat-radio-button value="depositar">Depósito</mat-radio-button>
+        <mat-radio-button value="retirar">Retiro</mat-radio-button>
+      </mat-radio-group>
+    </div>
 
-  <mat-form-field class="example-full-width">
-    <mat-label>fondos</mat-label>
-    <input
-      matInput
-      type="number"
-      placeholder="fondos"
-      formControlName="fondos"
-    />
-  </mat-form-field>
+    <mat-form-field class="col-4">
+      <mat-label>Fondos (u.m.)</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="fondos"
+      />
+    </mat-form-field>
 
-  <!-- Buttons for actions -->
-  <button mat-raised-button color="primary">Aceptar</button>
-  <button mat-raised-button color="warn" routerLink="/components/estadodecuenta">
-    Cancelar
-  </button>
-  <p>{{ mensaje }}</p>
-</form>
+     <!-- Buttons for actions -->
+    <div class="d-flex flex-row col-12">
+      <button mat-raised-button color="primary" class="col-8">
+        Realizar operación
+      </button>
+      <div class="mx-1"></div>
+      <button
+        mat-raised-button
+        color="warn"
+        routerLink="/components/estadodecuenta"
+        class="w-100"
+      >
+        Cancelar
+      </button>
+    </div>
+    <p>{{ mensaje }}</p>
+  </form>
+</div>

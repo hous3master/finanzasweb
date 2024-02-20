@@ -37,6 +37,7 @@ export class EditarPlanDePagosComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       valorpresente: ['', Validators.required],
+      prePlazoDeTasaEfectiva: ['', Validators.required],
       plazoDeTasaEfectiva: ['', Validators.required],
       tasaefectiva: ['', Validators.required],
       fechaInicial: ['', Validators.required],
@@ -46,21 +47,44 @@ export class EditarPlanDePagosComponent implements OnInit {
     this.form.get('valorpresente')?.disable();
     this.form.get('fechaInicial')?.disable();
     this.llenarFormulario();
+
+    this.form.get('prePlazoDeTasaEfectiva')?.valueChanges.subscribe((newValue) => {
+      // update the value in the form
+      this.form.patchValue({
+        plazoDeTasaEfectiva: parseInt(newValue),
+      });
+      // if the value is not especial (0), the disable editing
+      if (parseInt(this.form.get('plazoDeTasaEfectiva')?.value) == 0 ) {
+        this.form.get('plazoDeTasaEfectiva')?.enable();
+      }
+      else {
+        this.form.get('plazoDeTasaEfectiva')?.disable();
+      }
+    });
+  }
+
+  disableAll(): void {
+    this.form.get('valorpresente')?.disable();
+    this.form.get('fechaInicial')?.disable();
+    this.form.get('plazoDeTasaEfectiva')?.disable();
+  }
+
+  enableAll(): void {
+    this.form.get('valorpresente')?.enable();
+    this.form.get('fechaInicial')?.enable();
+    this.form.get('plazoDeTasaEfectiva')?.enable();
   }
 
   aceptar(): void {
     if (this.form.valid) {
-      this.form.get('valorpresente')?.enable();
-      this.form.get('fechaInicial')?.enable();
+      this.enableAll();
+
       this.valorpresente = this.form.value.valorpresente;
 
       // also to avoid date problems with java (its start with 0 idkwhy)
       let fechaInicial = new Date(this.form.value.fechaInicial);
       fechaInicial.setDate(fechaInicial.getDate());
       this.fechaInicial = fechaInicial;
-
-      this.form.get('valorpresente')?.disable();
-      this.form.get('fechaInicial')?.disable();
 
       this.plazoDeTasaEfectiva = this.form.value.plazoDeTasaEfectiva;
       this.tasaefectiva = this.form.value.tasaefectiva / 100; // Convertir a porcentaje
@@ -92,6 +116,7 @@ export class EditarPlanDePagosComponent implements OnInit {
           );
           if (infoContable) {
             this.infocontable.idInfocontable = infoContable.idInfocontable;
+            
 
             // just to avoid date problems with java (its start with 0 idkwhy)
             let fechaInicialDate = new Date(infoContable.fechainicio);
@@ -99,14 +124,31 @@ export class EditarPlanDePagosComponent implements OnInit {
             let fechafinDate = new Date(infoContable.fechafin);
             fechafinDate.setDate(fechafinDate.getDate() + 1);
 
+            console.log('infoContable: ', infoContable);
+
+            let valPrePlazoDeTasaEfectiva: number = 0;
+            if (
+              [1, 15, 30, 60, 90, 120, 180, 360].includes(
+                infoContable.plazodias
+              )
+            ) {
+              valPrePlazoDeTasaEfectiva = infoContable.plazodias;
+            }
+            console.log(
+              'valPrePlazoDeTasaEfectiva: ',
+              valPrePlazoDeTasaEfectiva
+            );
+            console.log(infoContable.plazodias);
+
             this.form.setValue({
               valorpresente: infoContable.valorpresente,
+              prePlazoDeTasaEfectiva: valPrePlazoDeTasaEfectiva.toString(),
               plazoDeTasaEfectiva: infoContable.plazodias,
               tasaefectiva: infoContable.tasaefectiva * 100,
               fechaInicial: fechaInicialDate,
               fechafin: fechafinDate,
+              
             });
-            console.log('infoContable: ', infoContable);
           }
         });
       });
@@ -137,6 +179,8 @@ export class EditarPlanDePagosComponent implements OnInit {
   }
 
   registrar(): void {
+    this.enableAll();
+
     let fechaInicial = new Date(this.fechaInicial);
     fechaInicial.setDate(fechaInicial.getDate() - 1);
     this.fechaInicial = fechaInicial;

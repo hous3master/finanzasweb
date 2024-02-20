@@ -1,3 +1,11 @@
 .hover-pointer:hover {
     cursor: pointer;
 }
+
+.mainapp {
+    min-height: calc(100vh - 40px);
+    background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperaccess.com%2Ffull%2F1104862.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

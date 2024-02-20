@@ -1,7 +1,32 @@
-<h2> Mi estado de cuenta</h2>
-<p> Valor actual: <span>{{ infocontable.valorpresente.toFixed(2)}} u.m. </span> </p>
-<p> Fecha de inicio <span>{{ infocontable.fechainicio }} </span></p>
-<p> Fecha de fin: <span>{{ infocontable.fechafin }}</span> </p>
-<p> Tasa efectiva: <span>{{ (infocontable.tasaefectiva * 100).toFixed(2) }}%</span> en un plazo de <span>{{ infocontable.plazodias }}</span> días </p>
-<p> Valor esperado al {{ infocontable.fechafin }}: <span>{{ infocontable.valorfuturo.toFixed(2)}} u.m. </span></p>
-<app-grafico-de-valor-futuro></app-grafico-de-valor-futuro>
+<h2>Mi estado de cuenta</h2>
+<div class="bg-white border-dark-subtle border p-2 rounded-2">
+  <table class="w-100">
+    <tr>
+      <td>Valor actual</td>
+      <td>{{ infocontable.valorpresente.toFixed(2) }} u.m.</td>
+    </tr>
+    <tr>
+      <td>Fecha de inicio</td>
+      <td>{{ infocontable.fechainicio }}</td>
+    </tr>
+    <tr>
+      <td>Fecha de fin</td>
+      <td>{{ infocontable.fechafin }}</td>
+    </tr>
+    <tr>
+      <td>Tasa efectiva</td>
+      <td>
+        {{ (infocontable.tasaefectiva * 100).toFixed(2) }}% en un plazo de
+        {{ infocontable.plazodias }} días
+      </td>
+    </tr>
+    <tr>
+      <td>Valor esperado al {{ infocontable.fechafin }}</td>
+      <td>{{ infocontable.valorfuturo.toFixed(2) }} u.m.</td>
+    </tr>
+  </table>
+</div>
+<div class="py-1"></div>
+<div class="bg-white border-dark-subtle border p-2 rounded-2">
+  <app-grafico-de-valor-futuro></app-grafico-de-valor-futuro>
+</div>

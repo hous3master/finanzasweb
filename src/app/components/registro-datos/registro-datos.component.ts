@@ -35,10 +35,25 @@ export class RegistroDatosComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       valorpresente: ['', Validators.required],
-      plazoDeTasaEfectiva: ['', Validators.required],
+      prePlazoDeTasaEfectiva: ['360', Validators.required],
+      plazoDeTasaEfectiva: ['360', Validators.required],
       tasaefectiva: ['', Validators.required],
       fechaInicial: ['', Validators.required],
       fechafin: ['', Validators.required],
+    });
+
+    this.form.get('prePlazoDeTasaEfectiva')?.valueChanges.subscribe((newValue) => {
+      // update the value in the form
+      this.form.patchValue({
+        plazoDeTasaEfectiva: parseInt(newValue),
+      });
+      // if the value is not especial (0), the disable editing
+      if (parseInt(this.form.get('plazoDeTasaEfectiva')?.value) == 0 ) {
+        this.form.get('plazoDeTasaEfectiva')?.enable();
+      }
+      else {
+        this.form.get('plazoDeTasaEfectiva')?.disable();
+      }
     });
   }
 

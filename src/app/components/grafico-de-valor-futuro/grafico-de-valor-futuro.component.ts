@@ -77,6 +77,20 @@ export class GraficoDeValorFuturoComponent implements OnInit  {
     this.chart = new Chart(this.chartRef.nativeElement, {
       type: 'line',
       data: chartData ,
+      // disable the legend
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Evolución del valor futuro en función del tiempo'
+          },
+          legend: {
+            display: false
+          },
+        },
+      }
     });
     
   }

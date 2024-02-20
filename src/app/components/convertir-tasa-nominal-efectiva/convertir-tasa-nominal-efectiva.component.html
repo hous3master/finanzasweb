@@ -1,116 +1,138 @@
 <h2>Convertir tasa nominal a tasa efectiva</h2>
-<form [formGroup]="form" (submit)="aceptar()" class="example-form">
-  <mat-form-field class="example-full-width">
-    <mat-label>Dias por año</mat-label>
-    <mat-select formControlName="diasPorAno">
-      <mat-option value="360">360</mat-option>
-      <mat-option value="365">365</mat-option>
-    </mat-select>
-  </mat-form-field>
+<div class="bg-white border-dark-subtle border p-2 rounded-2">
+  <form [formGroup]="form" (submit)="aceptar()" class="d-flex flex-column">
+    <mat-form-field class="col-4">
+      <mat-label>Dias por año</mat-label>
+      <mat-select formControlName="diasPorAno">
+        <mat-option value="360">360</mat-option>
+        <mat-option value="365">365</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <mat-label>Plazo de tasa nominal</mat-label>
-    <mat-select formControlName="PrePlazoDeTasaNominal">
-      <!--diario, quicenal, mensual, bimestral, trimestral, cuatrimestral, semestral, anual, especial-->
-      <mat-option value="1">Diario</mat-option>
-      <mat-option value="15">Quincenal</mat-option>
-      <mat-option value="30">Mensual</mat-option>
-      <mat-option value="60">Bimestral</mat-option>
-      <mat-option value="90">Trimestral</mat-option>
-      <mat-option value="120">Cuatrimestral</mat-option>
-      <mat-option value="180">Semestral</mat-option>
-      <mat-option value="360">Anual</mat-option>
-      <mat-option value="0">Especial</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <div class="d-flex flex-row">
+      <mat-form-field class="col-4">
+        <mat-label>Tasa nominal (%)</mat-label>
+        <input matInput type="number" formControlName="tasaNominal" />
+      </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <mat-label>Dias en el plazo de T.N.</mat-label>
-    <input matInput type="number" formControlName="NumPlazoDeTasaNominal" />
-  </mat-form-field>
+      <mat-form-field class="col-4">
+        <mat-label>Plazo de tasa nominal</mat-label>
+        <mat-select formControlName="PrePlazoDeTasaNominal">
+          <!--diario, quicenal, mensual, bimestral, trimestral, cuatrimestral, semestral, anual, especial-->
+          <mat-option value="1">Diario</mat-option>
+          <mat-option value="15">Quincenal</mat-option>
+          <mat-option value="30">Mensual</mat-option>
+          <mat-option value="60">Bimestral</mat-option>
+          <mat-option value="90">Trimestral</mat-option>
+          <mat-option value="120">Cuatrimestral</mat-option>
+          <mat-option value="180">Semestral</mat-option>
+          <mat-option value="360">Anual</mat-option>
+          <mat-option value="0">Especial</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <mat-label>Tasa nominal (%)</mat-label>
-    <input matInput type="number" formControlName="tasaNominal" />
-  </mat-form-field>
+      <mat-form-field class="col-4">
+        <mat-label>Dias en el plazo de T.N.</mat-label>
+        <input matInput type="number" formControlName="NumPlazoDeTasaNominal" />
+      </mat-form-field>
+    </div>
 
-  <mat-form-field class="example-full-width">
-    <mat-label>Periodo de capitalización</mat-label>
-    <mat-select formControlName="PrePeriodoDeCapitalizacion">
-      <!--diario, quicenal, mensual, bimestral, trimestral, cuatrimestral, semestral, anual, especial-->
-      <mat-option value="1">Diario</mat-option>
-      <mat-option value="15">Quincenal</mat-option>
-      <mat-option value="30">Mensual</mat-option>
-      <mat-option value="60">Bimestral</mat-option>
-      <mat-option value="90">Trimestral</mat-option>
-      <mat-option value="120">Cuatrimestral</mat-option>
-      <mat-option value="180">Semestral</mat-option>
-      <mat-option value="360">Anual</mat-option>
-      <mat-option value="0">Especial</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <div class="d-flex flex-row">
+      <mat-form-field class="col-4">
+        <mat-label>Periodo de capitalización</mat-label>
+        <mat-select formControlName="PrePeriodoDeCapitalizacion">
+          <!--diario, quicenal, mensual, bimestral, trimestral, cuatrimestral, semestral, anual, especial-->
+          <mat-option value="1">Diario</mat-option>
+          <mat-option value="15">Quincenal</mat-option>
+          <mat-option value="30">Mensual</mat-option>
+          <mat-option value="60">Bimestral</mat-option>
+          <mat-option value="90">Trimestral</mat-option>
+          <mat-option value="120">Cuatrimestral</mat-option>
+          <mat-option value="180">Semestral</mat-option>
+          <mat-option value="360">Anual</mat-option>
+          <mat-option value="0">Especial</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <mat-label>Dias en el plazo de P.C.</mat-label>
-    <input
-      matInput
-      type="number"
-      formControlName="NumPeriodoDeCapitalizacion"
-    />
-  </mat-form-field>
+      <mat-form-field class="col-4">
+        <mat-label>Dias en el plazo de P.C.</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="NumPeriodoDeCapitalizacion"
+        />
+      </mat-form-field>
+    </div>
 
-  <mat-form-field class="example-full-width">
-    <mat-label>Tasa Efectiva Requerida</mat-label>
-    <mat-select formControlName="PreTasaEfectivaRequerida">
-      <!--diario, quicenal, mensual, bimestral, trimestral, cuatrimestral, semestral, anual, especial-->
-      <mat-option value="1">Diario</mat-option>
-      <mat-option value="15">Quincenal</mat-option>
-      <mat-option value="30">Mensual</mat-option>
-      <mat-option value="60">Bimestral</mat-option>
-      <mat-option value="90">Trimestral</mat-option>
-      <mat-option value="120">Cuatrimestral</mat-option>
-      <mat-option value="180">Semestral</mat-option>
-      <mat-option value="360">Anual</mat-option>
-      <mat-option value="0">Especial</mat-option>
-    </mat-select>
-  </mat-form-field>
+    <div class="d-flex flex-row">
+      <mat-form-field class="col-4">
+        <mat-label>Tasa Efectiva Requerida</mat-label>
+        <mat-select formControlName="PreTasaEfectivaRequerida">
+          <!--diario, quicenal, mensual, bimestral, trimestral, cuatrimestral, semestral, anual, especial-->
+          <mat-option value="1">Diario</mat-option>
+          <mat-option value="15">Quincenal</mat-option>
+          <mat-option value="30">Mensual</mat-option>
+          <mat-option value="60">Bimestral</mat-option>
+          <mat-option value="90">Trimestral</mat-option>
+          <mat-option value="120">Cuatrimestral</mat-option>
+          <mat-option value="180">Semestral</mat-option>
+          <mat-option value="360">Anual</mat-option>
+          <mat-option value="0">Especial</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <mat-label>Dias en el plazo de T.E.</mat-label>
-    <input matInput type="number" formControlName="NumTasaEfectivaRequerida" />
-  </mat-form-field>
+      <mat-form-field class="col-4">
+        <mat-label>Dias en el plazo de T.E.</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="NumTasaEfectivaRequerida"
+        />
+      </mat-form-field>
+    </div>
 
-  <!-- Buttons for actions -->
-  <button mat-raised-button color="primary">Convertir</button>
-  
-  <p>{{ mensaje }}</p>
-</form>
+    <!-- Buttons for actions -->
+    <button mat-raised-button color="primary">Convertir</button>
 
-<table class="datos">
-  <tbody>
+    <p>{{ mensaje }}</p>
+  </form>
+</div>
+<div class="bg-white border-dark-subtle border p-2 rounded-2">
+  <table class="col-12">
     <tr>
-      <td style="width: 310px">
-        (m) Nº de períodos de {{this.copiaMostrarNumPeriodoDeCapitalizacion}} día(s), que hay en {{this.copiaMostrarNumPlazoDeTasaNominal}} días
+      <td class="col-6">
+        (m) Nº de períodos de
+        {{ this.copiaMostrarNumPeriodoDeCapitalizacion }} día(s), que hay en
+        {{ this.copiaMostrarNumPlazoDeTasaNominal }} días
       </td>
-      <td style="width: 100px">
-        <input class="result" type="text" readonly="" value="{{copiaMostrarM}}" />
+      <td class="col-6">
+        {{ copiaMostrarM }}
       </td>
     </tr>
     <tr>
-      <td>(n) Nº de períodos de {{this.copiaMostrarNumPeriodoDeCapitalizacion}} día(s), que hay en {{this.copiaMostrarNumTasaEfectivaRequerida}} días</td>
-      <td><input class="result" type="text" readonly="" value="{{copiaMostrarN}}" /></td>
-    </tr>
-    <tr>
-      <td>(TE) Tasa Efectiva ({{this.copiaMostrarNumTasaEfectivaRequerida}} días)</td>
       <td>
-        <input class="result" type="text" readonly="" value="{{(copiaMostrarTEP * 100).toFixed(2)}} %" />
+        (n) Nº de períodos de
+        {{ this.copiaMostrarNumPeriodoDeCapitalizacion }} día(s), que hay en
+        {{ this.copiaMostrarNumTasaEfectivaRequerida }} días
+      </td>
+      <td>
+        {{ copiaMostrarN }}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        (TE) Tasa Efectiva ({{ this.copiaMostrarNumTasaEfectivaRequerida }}
+        días)
+      </td>
+      <td>
+        {{ (copiaMostrarTEP * 100).toFixed(2) }} %
       </td>
     </tr>
     <tr>
       <td>(TEA) Tasa Efectiva Anual (año de 360)</td>
       <td>
-        <input class="result" type="text" readonly="" value="{{(copiaMostrarTEA * 100).toFixed(2)}} %" />
+        {{ (copiaMostrarTEA * 100).toFixed(2) }} %
       </td>
     </tr>
-  </tbody>
-</table>
+  </table>
+</div>
