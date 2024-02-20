@@ -1,0 +1,7 @@
+<h2> Mi estado de cuenta</h2>
+<p> Valor actual: <span>{{ infocontable.valorpresente.toFixed(2)}} u.m. </span> </p>
+<p> Fecha de inicio <span>{{ infocontable.fechainicio }} </span></p>
+<p> Fecha de fin: <span>{{ infocontable.fechafin }}</span> </p>
+<p> Tasa efectiva: <span>{{ (infocontable.tasaefectiva * 100).toFixed(2) }}%</span> en un plazo de <span>{{ infocontable.plazodias }}</span> días </p>
+<p> Valor esperado al {{ infocontable.fechafin }}: <span>{{ infocontable.valorfuturo.toFixed(2)}} u.m. </span></p>
+<app-grafico-de-valor-futuro></app-grafico-de-valor-futuro>

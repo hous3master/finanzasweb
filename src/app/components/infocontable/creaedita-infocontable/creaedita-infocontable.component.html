@@ -1,0 +1,98 @@
+
+    <h2>Registro de Infocontable</h2>
+    <form [formGroup]="form" (submit)="aceptar()" class="example-form">
+        <!-- idEntityName -->
+    
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+            <mat-label>idInfocontable</mat-label>
+            <input matInput placeholder="Id" formControlName="idInfocontable"/>
+        </mat-form-field>
+        <br />
+        <!-- Form fields for each attribute -->
+    
+            <!-- NOTE : Only if is not of type LocalDate -->
+            <mat-form-field class="example-full-width">
+                <mat-label>plazodias</mat-label>
+                <input matInput placeholder="plazodias" formControlName="plazodias"/>
+                <mat-error *ngIf="obtenerControlCampo('plazodias')?.errors?.['required']">
+                    plazodias es obligatorio.
+                </mat-error>
+            </mat-form-field>
+            <br />
+            
+            <!-- NOTE : Only if is of type LocalDate -->
+            <mat-form-field appearance="fill" class="example-full-width">
+                <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker1" formControlName="fechafin"
+                [max]="maxfechafin"/>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+                <mat-error *ngIf="obtenerControlCampo('fechafin')?.errors?.['required']">
+                    fechafin es obligatorio.
+                </mat-error>
+            </mat-form-field>
+            <br />
+            
+            <!-- NOTE : Only if is of type LocalDate -->
+            <mat-form-field appearance="fill" class="example-full-width">
+                <input matInput placeholder="Ingrese fecha" [matDatepicker]="picker2" formControlName="fechainicio"
+                [max]="maxfechainicio"/>
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+                <mat-error *ngIf="obtenerControlCampo('fechainicio')?.errors?.['required']">
+                    fechainicio es obligatorio.
+                </mat-error>
+            </mat-form-field>
+            <br />
+            
+            <!-- NOTE : Only if is not of type LocalDate -->
+            <mat-form-field class="example-full-width">
+                <mat-label>tasaefectiva</mat-label>
+                <input matInput placeholder="tasaefectiva" formControlName="tasaefectiva"/>
+                <mat-error *ngIf="obtenerControlCampo('tasaefectiva')?.errors?.['required']">
+                    tasaefectiva es obligatorio.
+                </mat-error>
+            </mat-form-field>
+            <br />
+            
+            <!-- NOTE : Only if is not of type LocalDate -->
+            <mat-form-field class="example-full-width">
+                <mat-label>valorpresente</mat-label>
+                <input matInput placeholder="valorpresente" formControlName="valorpresente"/>
+                <mat-error *ngIf="obtenerControlCampo('valorpresente')?.errors?.['required']">
+                    valorpresente es obligatorio.
+                </mat-error>
+            </mat-form-field>
+            <br />
+            
+            <!-- NOTE : Only if is not of type LocalDate -->
+            <mat-form-field class="example-full-width">
+                <mat-label>valorfuturo</mat-label>
+                <input matInput placeholder="valorfuturo" formControlName="valorfuturo"/>
+                <mat-error *ngIf="obtenerControlCampo('valorfuturo')?.errors?.['required']">
+                    valorfuturo es obligatorio.
+                </mat-error>
+            </mat-form-field>
+            <br />
+            
+            <!-- NOTE: Only components with foreign key-->
+            <mat-form-field class="example-full-width">
+                <mat-label>user</mat-label>
+                <mat-select formControlName="user">
+                    <mat-option *ngFor="let tipo of listaUsers" [value]="tipo.id">
+                        {{tipo.id}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="obtenerControlCampo('user')?.errors?.['required']">
+                    user es obligatorio.
+                </mat-error>
+            </mat-form-field>
+            <br />
+            
+    <!-- Buttons for actions -->
+    <button mat-raised-button color="primary">Aceptar</button>
+    <button mat-raised-button color="warn" routerLink="/components/Infocontable">Cancelar</button>
+    <p>{{ mensaje }}</p>
+    </form>
+    

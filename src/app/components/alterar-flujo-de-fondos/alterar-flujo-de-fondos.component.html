@@ -1,0 +1,25 @@
+<h2>Alterar flujo de fondos</h2>
+<form [formGroup]="form" (submit)="aceptar()" class="example-form">
+  <!-- radio button to select betwwen ingreso and egreso -->
+  <mat-radio-group formControlName="tipo">
+    <mat-radio-button value="depositar">Depositar</mat-radio-button>
+    <mat-radio-button value="retirar">Retirar</mat-radio-button>
+  </mat-radio-group>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>fondos</mat-label>
+    <input
+      matInput
+      type="number"
+      placeholder="fondos"
+      formControlName="fondos"
+    />
+  </mat-form-field>
+
+  <!-- Buttons for actions -->
+  <button mat-raised-button color="primary">Aceptar</button>
+  <button mat-raised-button color="warn" routerLink="/components/estadodecuenta">
+    Cancelar
+  </button>
+  <p>{{ mensaje }}</p>
+</form>

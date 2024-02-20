@@ -1,0 +1,22 @@
+ng add @angular/material --legacy-peer-deps
+ng add moment --legacy-peer-deps
+npm install @auth0/angular-jwt --legacy-peer-deps
+npm install ng2-charts chart.js --legacy-peer-deps
+npm install --legacy-peer-deps
+ng g s services/Infocontable --skip-tests
+ng g c components/Infocontable --skip-tests
+ng g c components/Infocontable/creaedita-Infocontable --skip-tests
+ng g c components/Infocontable/listar-Infocontable --skip-tests
+ng g s services/historial --skip-tests
+ng g c components/historial --skip-tests
+ng g c components/historial/creaedita-historial --skip-tests
+ng g c components/historial/listar-historial --skip-tests
+ng g s services/users --skip-tests
+ng g c components/users --skip-tests
+ng g c components/users/creaedita-users --skip-tests
+ng g c components/users/listar-users --skip-tests
+ng g s services/role --skip-tests
+ng g c components/role --skip-tests
+ng g c components/role/creaedita-role --skip-tests
+ng g c components/role/listar-role --skip-tests
+ng g c components/login --skip-tests

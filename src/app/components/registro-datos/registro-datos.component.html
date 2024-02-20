@@ -1,0 +1,62 @@
+<h2>Registro de datos</h2>
+<form [formGroup]="form" (submit)="aceptar()" class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>valorpresente</mat-label>
+    <input
+      matInput
+      placeholder="valorpresente"
+      formControlName="valorpresente"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>plazoDeTasaEfectiva %</mat-label>
+    <input
+      matInput
+      placeholder="plazoDeTasaEfectiva"
+      formControlName="plazoDeTasaEfectiva"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>tasaefectiva</mat-label>
+    <input matInput placeholder="tasaefectiva" formControlName="tasaefectiva" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="example-full-width">
+    <input
+      matInput
+      placeholder="Ingrese fechaInicial"
+      [matDatepicker]="picker1"
+      formControlName="fechaInicial"
+    />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="picker1"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="example-full-width">
+    <input
+      matInput
+      placeholder="Ingrese fechafin"
+      [matDatepicker]="picker2"
+      formControlName="fechafin"
+    />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="picker2"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+
+  <!-- Buttons for actions -->
+  <button mat-raised-button color="primary">Aceptar</button>
+  <button mat-raised-button color="warn" routerLink="/components/estadodecuenta">
+    Cancelar
+  </button>
+  <p>{{ mensaje }}</p>
+</form>

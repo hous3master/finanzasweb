@@ -1,0 +1,54 @@
+
+    <h2 style="text-align: center">Historial list</h2>
+    <button mat-raised-button color="primary" routerLink="/components/historial/nuevo">
+        Nuevo
+    </button>
+    <mat-form-field>
+    <input matInput (keyup)="filter($event)" placeholder="buscar" />
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+            <ng-container matColumnDef="idHistorial">
+                <th mat-header-cell *matHeaderCellDef>idHistorial</th>
+                <td mat-cell *matCellDef="let element">{{ element.idHistorial }}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef>fecha</th>
+                <td mat-cell *matCellDef="let element">{{ element.fecha }}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="monto">
+                <th mat-header-cell *matHeaderCellDef>monto</th>
+                <td mat-cell *matCellDef="let element">{{ element.monto }}</td>
+            </ng-container>
+            
+            <ng-container matColumnDef="user">
+                <th mat-header-cell *matHeaderCellDef>user</th>
+                <td mat-cell *matCellDef="let element">{{ element.user.id}}</td>
+            </ng-container>
+            
+    <ng-container matColumnDef="accion01">
+        <th mat-header-cell *matHeaderCellDef>actions</th>
+        <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="primary" [routerLink]="['ediciones', element.idHistorial]">
+            <mat-icon>create</mat-icon>
+        </button>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="accion02">
+        <th mat-header-cell *matHeaderCellDef>actions</th>
+        <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="warn" (click)="eliminar(element.idHistorial)">
+            <mat-icon>delete</mat-icon>
+        </button>
+        </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+    
