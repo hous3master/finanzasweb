@@ -26,6 +26,8 @@
         />
       </mat-form-field>
 
+      <div class="pepito">%</div>
+
       <mat-form-field class="col-4">
         <mat-label>Plazo de tasa efectiva</mat-label>
         <mat-select formControlName="prePlazoDeTasaEfectiva">
@@ -88,7 +90,7 @@
 
     <!-- Buttons for actions -->
     <div class="d-flex flex-row col-12">
-      <button mat-raised-button color="primary" class="col-8">
+      <button mat-raised-button color="primary" class="col-6">
         Registrar
       </button>
       <div class="mx-1"></div>
@@ -100,7 +102,9 @@
       >
         Cancelar
       </button>
+     
     </div>
     <p>{{ mensaje }}</p>
   </form>
+  <div class="col-12 d-flex justify-content-end align-items-end"><button mat-button (click)="habilitarFecha()" class="col-2">Habilitar fecha</button></div>
 </div>

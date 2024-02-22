@@ -44,9 +44,9 @@ export class EditarPlanDePagosComponent implements OnInit {
       fechafin: ['', Validators.required],
     });
 
-    this.form.get('valorpresente')?.disable();
-    this.form.get('fechaInicial')?.disable();
     this.llenarFormulario();
+
+    
 
     this.form.get('prePlazoDeTasaEfectiva')?.valueChanges.subscribe((newValue) => {
       // update the value in the form
@@ -64,9 +64,6 @@ export class EditarPlanDePagosComponent implements OnInit {
   }
 
   disableAll(): void {
-    this.form.get('valorpresente')?.disable();
-    this.form.get('fechaInicial')?.disable();
-    this.form.get('plazoDeTasaEfectiva')?.disable();
   }
 
   enableAll(): void {
@@ -141,14 +138,16 @@ export class EditarPlanDePagosComponent implements OnInit {
             console.log(infoContable.plazodias);
 
             this.form.setValue({
-              valorpresente: infoContable.valorpresente,
+              valorpresente: infoContable.valorfuturo.toFixed(2),
               prePlazoDeTasaEfectiva: valPrePlazoDeTasaEfectiva.toString(),
               plazoDeTasaEfectiva: infoContable.plazodias,
-              tasaefectiva: infoContable.tasaefectiva * 100,
-              fechaInicial: fechaInicialDate,
-              fechafin: fechafinDate,
-              
+              tasaefectiva: (infoContable.tasaefectiva  * 100).toFixed(6),
+              fechaInicial: fechafinDate,
+              fechafin: Date.now(),
             });
+
+            // make form value fechaIncial inactive
+            this.form.get('fechaInicial')?.disable();
           }
         });
       });
@@ -207,5 +206,19 @@ export class EditarPlanDePagosComponent implements OnInit {
           });
         });
       });
+  }
+
+  swapdates() {
+    // change dates in form
+    let fechaInicial = this.form.value.fechaInicial;
+    let fechafin = this.form.value.fechafin;
+    this.form.patchValue({
+      fechaInicial: fechafin,
+      fechafin: fechaInicial,
+    });
+  }
+
+  habilitarFecha() {
+    this.form.get('fechaInicial')?.enable();
   }
 }

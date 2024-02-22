@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Infocontable } from 'src/app/models/Infocontable';
 import { InfocontableService } from 'src/app/services/Infocontable.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -19,19 +19,28 @@ export class EstadoDeCuentaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.usersService
-      .buscarPorUsername(this.loginService.showUser())
-      .subscribe((user) => {
-        // return first info contable of user
-        console.log('User: ', user);
-        this.infocontableService.list().subscribe((infocontables) => {
-          infocontables.forEach((infocontable: Infocontable) => {
-            if (infocontable.user.id == user.id) {
-              this.infocontable = infocontable;
-              console.log('infocontable: ', this.infocontable);
-            }
+    this.cargarInfo();
+  }
+
+  cargarInfo() {
+    // wait 2 seconds
+    setTimeout(() => {
+      this.usersService
+        .buscarPorUsername(this.loginService.showUser())
+        .subscribe((user) => {
+          // return first info contable of user
+          console.log('User: ', user);
+          this.infocontableService.list().subscribe((infocontables) => {
+            infocontables.forEach((infocontable: Infocontable) => {
+              if (infocontable.user.id == user.id) {
+                this.infocontable = infocontable;
+                console.log('infocontable: ', this.infocontable);
+              }
+            });
           });
         });
-      });
+    }, 2000);
   }
+
+  
 }
